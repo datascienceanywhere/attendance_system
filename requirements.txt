@@ -1,8 +1,9 @@
 numpy
 pandas
 redis
-streamlit
 opencv-python
-insightface
 scikit-learn
-steamlit-webrtc
+streamlit
+streamlit-webrtc
+insightface
+onnxruntime
