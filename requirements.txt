@@ -1,7 +1,7 @@
 numpy
 pandas
 redis
-opencv-python
+opencv-python-headless
 scikit-learn
 streamlit
 streamlit-webrtc
