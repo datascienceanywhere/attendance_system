@@ -43,5 +43,31 @@ To set up a Real-Time Attendance System on an AWS EC2 Instance, follow these ste
      ```bash
      rm index.html
      ```
+## Running app in EC2
+
+### 3.1 Clone streamlit app using git
+```bash
+git clone <your github repository>
+```
+### 3.2 Install all required packages in `requirements.txt`
+```bash
+pip3 install -r requirements.txt
+```
+### 3.3 Run the streamlit app
+```bash
+streamlit run Home.py
+```
+
+## Configuring Inbound Rules in security group
+Make sure you add below inbound rules 
+|Type|Port range|Source|CIDR blocks|
+|:--:|:--:|:--:|:--:|
+|SSH|TCP|22|Custom|0.0.0.0/0|
+|HTTPS|TCP|443|Custom|0.0.0.0/0|
+|HTTP|TCP|80|Custom|0.0.0.0/0|
+
+
+
+### 
 
 Now, your EC2 instance is set up with Apache2 installed and the default web page removed. You can proceed to deploy your Real-Time Attendance System on this instance. Customize the Apache2 configuration and upload your application files to the `/var/www/html` directory for hosting on the web server.
