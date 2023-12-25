@@ -58,13 +58,17 @@ pip3 install -r requirements.txt
 streamlit run Home.py
 ```
 
-## Configuring Inbound Rules in security group
+## 4. Configure Apache2 Server
+
+### 3.4 Configuring Inbound Rules in security group
 Make sure you add below inbound rules 
-|Type|Port range|Source|CIDR blocks|
-|:--:|:--:|:--:|:--:|
+|Type|Protocol|Port range|Source|CIDR blocks|
+|:--:|:--:|:--:|:--:|:--:|
 |SSH|TCP|22|Custom|0.0.0.0/0|
 |HTTPS|TCP|443|Custom|0.0.0.0/0|
 |HTTP|TCP|80|Custom|0.0.0.0/0|
+
+
 
 
 
