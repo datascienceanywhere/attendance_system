@@ -42,7 +42,7 @@ It is highly recommed to use GIT bash for Windows. For Linux/Mac use default ter
      (virtualenv) ~/attendance_system_app/app $ streamlit run Home.py
      ```
 4. Remove all unnecesary files that are not part of the application to run which lite our application.
-3. Modifiy our code of streamlit-webrtc as per official documentation.
+5. Modifiy our code of streamlit-webrtc as per official documentation.
    - HTTPS is required to access local media devices.
       > Create bash file with name "configure.sh" and copy and paste below code
       > ```bash
@@ -93,8 +93,22 @@ It is highly recommed to use GIT bash for Windows. For Linux/Mac use default ter
       > This configuration is necessary to establish the media streaming connection when the server is on a remote host.
       > In cloud we need to apply inbound rules as `TYPE -> Custom UDP`  and `PORT range -> 49152 - 65535`
       > Reference: <https://github.com/whitphx/streamlit-webrtc?tab=readme-ov-file#serving-from-remote-host>
-     
-6. Please note that max size of file that allowed is 50MB 
+6. Create a bash file with name **main.sh** and in that copy and paste the below bash commands
+   ```bash main.sh
+   bash configure.sh
+   streamlit run Home.py
+   ```
+## 1. Push Complete update code in github repository. Follow below git commands
+   - Login to your Github account and create empty repository.
+   - In your local computer use below git commands
+   ```bash
+   git init
+   git add .
+   git commit -m "attendance system"
+   git remote
+   git branch -M
+   git push -u origin main
+   ```
 
 
 ## 1. Create EC2 Instance
