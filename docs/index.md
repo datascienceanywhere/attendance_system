@@ -201,14 +201,14 @@ i) Configure Inbound Rules in Security Group to View the Web App with IP Address
 ##### 5.1 Run the configure.sh bash file with the following command:
 
 ```bash
-  ~/var/www/html/attendance-system-app $ bash configure.sh
+~/var/www/html/attendance-system-app $ bash configure.sh
 ```
 This command will create a file deploy_attendance_app.conf in the /etc/apache2/sites-available/ directory.
   
 ##### 5.2 Open the deploy_attendance_app.conf file in /etc/apache2/sites-available/ directory using vim:
 
 ```bash
-  ~$ vi /etc/apache2/sites-available/deploy_attendance_app.conf
+~$ vi /etc/apache2/sites-available/deploy_attendance_app.conf
 ```
   
 ##### 5.3 Modify the deploy_attendance_app.conf as per the provided screenshot.
@@ -216,13 +216,13 @@ This command will create a file deploy_attendance_app.conf in the /etc/apache2/s
 ##### 5.4 Enable the site within the Apache2 configuration:
 
 ```bash
-  ~$ sudo a2ensite /etc/apache2/sites-available/deploy_attendance_app.conf
+~$ sudo a2ensite /etc/apache2/sites-available/deploy_attendance_app.conf
 ```
   
 ##### 5.5 Restart Apache2 server:
 
 ```bash
-  ~$ sudo service apache2 restart
+~$ sudo service apache2 restart
 ```
   
 ##### 5.6 Configure Inbound Rules in Security Group, Make sure to add the following inbound rules:
@@ -232,3 +232,5 @@ This command will create a file deploy_attendance_app.conf in the /etc/apache2/s
 | SSH | TCP | 22 | Custom | 0.0.0.0/0 |
 | HTTPS | TCP | 443 | Custom | 0.0.0.0/0 |
 | HTTP | TCP | 80 | Custom | 0.0.0.0/0 |
+
+### 6. Run Job with `pm2`
