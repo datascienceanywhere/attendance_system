@@ -233,4 +233,27 @@ This command will create a file deploy_attendance_app.conf in the /etc/apache2/s
 | HTTPS | TCP | 443 | Custom | 0.0.0.0/0 |
 | HTTP | TCP | 80 | Custom | 0.0.0.0/0 |
 
-### 6. Run Job with `pm2`
+### 6. Run Jobs with `pm2`
+
+#### 6.1. Install [npm](https://docs.npmjs.com/about-npm) and [pm2](https://www.npmjs.com/package/pm2)
+
+```bash
+$ sudo apt install npm
+```
+Now install pm2 with npm
+```bash
+$ npm install pm2 -g
+```
+#### 6.2 Start app with pm2
+
+```bash
+~/var/www/html/attendance-system-app $ pm2 start "streamlit run Home.py" --name "Attendance App"
+```
+
+#### 6.3 Continous excution with pm2
+By default, PM2 may stop running the app if the instance is restarted. To prevent this from happening, execute the following command:
+
+```bash
+$ pm2 startup "Attendance App"
+```
+
