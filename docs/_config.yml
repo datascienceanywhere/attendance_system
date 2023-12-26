@@ -1,3 +1,3 @@
-theme: jekyll-gist
+theme: jekyll-default-layout
 title: Deploy Real Time Attendance System Streamlit-webrtc app in AWS EC2
 description: Face Recognition | Streamlit-webrtc | AWS EC2 |
