@@ -1,7 +1,7 @@
 ### Deploy Real-Time Attendance System on AWS EC2 Instance
 It is highly recommended to use GIT Bash for Windows. For Linux/Mac, use the default terminal.
 
-##### 1. Setting up Code for Deployment
+#### 1. Setting up Code for Deployment
 1.1 Create a new directory with the name attendance_system_app.
 ```bash
 $ mkdir attendance_system_app
@@ -49,7 +49,7 @@ For Linux/Mac
 (virtualenv) ~/attendance_system_app/app $ streamlit run Home.py
 ```
 
-#### 2. Add necessary code into the app for streamlit-webrtc to run in cloud 
+### 2. Add necessary code into the app for streamlit-webrtc to run in cloud 
 2.1 Remove all unnecessary files not part of the application.
 
 2.2 Modify the code of streamlit-webrtc as per the official documentation.
