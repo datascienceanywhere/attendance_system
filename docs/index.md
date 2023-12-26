@@ -191,10 +191,10 @@ h) Run the Streamlit App
 i) Configure Inbound Rules in Security Group to View the Web App with IP Address
   - Make sure to add the following inbound rules:
     
-| Type | Protocol | Port | Range | Source | CIDR blocks|
-| :---: | :---: | :---: | :---: | :---: | :---: |
+| Type | Protocol | Port Range | Source | CIDR blocks|
+| :---: | :---: | :---: | :---: | :---: |
 | SSH | TCP | 22 | Custom | 0.0.0.0/0 |
-| Custom | TCP | TCP |8501 | Custom | 0.0.0.0/0 |
+| Custom | TCP | 8501 | Custom | 0.0.0.0/0 |
     
     
 ### 5 Configure HTTPS with Apache2
@@ -227,8 +227,8 @@ This command will create a file deploy_attendance_app.conf in the /etc/apache2/s
   
 ##### 5.6 Configure Inbound Rules in Security Group, Make sure to add the following inbound rules:
   
-| Type | Protocol | Port | Range | Source | CIDR blocks|
-| :---: | :---: | :---: | :---: | :---: | :---: |
+| Type | Protocol | Port Range | Source | CIDR blocks|
+| :---: | :---: | :---: | :---: | :---: |
 | SSH | TCP | 22 | Custom | 0.0.0.0/0 |
-| HTTPS | TCP | TCP | 443 | Custom | 0.0.0.0/0 |
-| HTTP | TCP | TCP | 80 | Custom | 0.0.0.0/0 |
+| HTTPS | TCP | 443 | Custom | 0.0.0.0/0 |
+| HTTP | TCP | 80 | Custom | 0.0.0.0/0 |
