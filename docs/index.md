@@ -95,7 +95,7 @@ It is highly recommed to use GIT bash for Windows. For Linux/Mac use default ter
       > In cloud we need to apply inbound rules as `TYPE -> Custom UDP`  and `PORT range -> 49152 - 65535`
       > Reference: <https://github.com/whitphx/streamlit-webrtc?tab=readme-ov-file#serving-from-remote-host>
 6. Create a bash file with name **main.sh** and in that copy and paste the below bash commands
-   ```bash main.sh
+   ```bash
    bash configure.sh
    streamlit run Home.py
    ```
@@ -135,42 +135,57 @@ To set up a Real-Time Attendance System on an AWS EC2 Instance, follow these ste
 ### 2.1 Update Ubuntu Instance
    - Execute the following command to update the Ubuntu instance:
      ```bash
-     sudo apt-get update
+     $ sudo apt-get update
      ```
 
 ### 2.2 Install and Configure Apache2
    - Follow the steps outlined in the official [Ubuntu tutorial](https://ubuntu.com/tutorials/install-and-configure-apache#1-overview) to install and configure Apache2.
      ```bash
-     sudo apt install apache2
+     $ sudo apt install apache2
      ```
 
 ### 2.3 Navigate to Default Root Directory
    - Change to the default root directory of Apache2:
      ```bash
-     cd /var/www/html
+     $ cd /var/www/html
      ```
 
 ### 2.4 Delete Default Index File
    - Remove the default `index.html` file from the directory:
      ```bash
-     rm index.html
+     ~/var/www/html $ rm index.html
      ```
 ## Running app in EC2
 
 ### 3.1 Clone streamlit app using git
+
 ```bash
-git clone <your github repository>
+~/var/www/html $ git clone <your github repository>
 ```
-### 3.2 Install all required packages in `requirements.txt`
+### 3.2 Change directory to project folder
 ```bash
-pip3 install -r requirements.txt
-```
-### 3.3 Run the streamlit app
-```bash
-streamlit run Home.py
+~/var/www/html $ cd attendance-system-app
 ```
 
-## 4. Configure Apache2 Server
+### 3.2 Install all required packages in `requirements.txt`
+```bash
+~/var/www/html/attendance-system-app $ pip3 install -r requirements.txt
+```
+### 3.3 Run the streamlit app
+
+```bash
+~/var/www/html/attendance-system-app $ streamlit run Home.py
+```
+### 3.4 Configuring Inbound Rules in security group to view the web app with IP address.
+Make sure you add below inbound rules 
+|Type|Protocol|Port range|Source|CIDR blocks|
+|:--:|:--:|:--:|:--:|:--:|
+|SSH|TCP|22|Custom|0.0.0.0/0|
+|Custom TCP|TCP|8501|Custom|0.0.0.0/0|
+
+
+## Configure HTTPS with Apache2
+1. 
 
 ### 3.4 Configuring Inbound Rules in security group
 Make sure you add below inbound rules 
