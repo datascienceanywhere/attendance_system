@@ -2,67 +2,62 @@
 It is highly recommended to use **GIT Bash** for Windows. For Linux/Mac, use the default terminal.
 
 ### 1. Setting up Code for Deployment
-  ##### 1.1. Create a new directory with the name attendance_system_app.
+##### 1.1. Create a new directory with the name attendance_system_app.
   
   ```bash
   $ mkdir attendance_system_app
   ```
   
-  ##### 1.2. Navigate to the folder
+##### 1.2. Navigate to the folder
   
   ```bash
   $ cd attendance_system_app
   ```
   
-  ##### 1.3. Lets test the application developed in the previous lesson. First Create a virtual environment.
+##### 1.3. Lets test the application developed in the previous lesson. First Create a virtual environment.
   
+```bash
+~/attendance_system_app $ python -m venv virtualenv
+```
+  
+##### 1.4. Activate the virtual environment
+  - For Windows (Git Bash)
     ```bash
-    ~/attendance_system_app $ python -m venv virtualenv
+    ~/attendance_system_app $ source virtualenv/Scripts/activate
     ```
-  
-  ##### 1.4. Activate the virtual environment
-  
-    - For Windows (Git Bash),
+  - For Windows (Command Prompt or PowerShell),
     
-      ```bash
-      ~/attendance_system_app $ source virtualenv/Scripts/activate
-      ```
-    - For Windows (Command Prompt or PowerShell),
-    
-      ```bash
-      ~/attendance_system_app $ virtualenv\Scripts\activate
-      ```
-    - For Linux/Mac
-    
-      ```bash
-      ~/attendance_system_app $ source virtualenv/bin/activate
-      ```
-  ##### 1.5. Create another directory named `app`
-  
     ```bash
+    ~/attendance_system_app $ virtualenv\Scripts\activate
+    ```
+  - For Linux/Mac
+    ```bash
+    ~/attendance_system_app $ source virtualenv/bin/activate
+    ```
+      
+##### 1.5. Create another directory named `app`
+  ```bash
     (virtualenv) ~/attendance_system_app $ mkdir app
-    ```
+  ```
+
+##### 1.6. Copy and paste the complete application code into the app directory.
   
-  ##### 1.6. Copy and paste the complete application code into the app directory.
+##### 1.7. Install required packages from `requirements.txt` in the app folder.
+  ```bash
+  (virtualenv) ~/attendance_system_app $ cd app
+  (virtualenv) ~/attendance_system_app/app $ pip install -r requirements.txt
+  ```
   
-  ##### 1.7. Install required packages from `requirements.txt` in the app folder.
-  
-    ```bash
-    (virtualenv) ~/attendance_system_app $ cd app
-    (virtualenv) ~/attendance_system_app/app $ pip install -r requirements.txt
-    ```
-  
-  ##### 1.8. Run the application
-  
-    ```bash
+##### 1.8. Run the application
+  ```bash
     (virtualenv) ~/attendance_system_app/app $ streamlit run Home.py
-    ```
+  ```
 
 ### 2. Add necessary code into the app for streamlit-webrtc to run in cloud 
 
-  ##### 2.1 Remove all unnecessary files not part of the application.
+##### 2.1 Remove all unnecessary files not part of the application.
 
-  ##### 2.2 Modify the code of streamlit-webrtc as per the official documentation.
+##### 2.2 Modify the code of streamlit-webrtc as per the official documentation.
 
     - HTTPS is required to access local media devices.
   
@@ -141,21 +136,21 @@ It is highly recommended to use **GIT Bash** for Windows. For Linux/Mac, use the
   ```
 ### 4. Clone app in AWS EC2 Instance
 
-  ##### 4.1 Log in to AWS Account
+##### 4.1 Log in to AWS Account
     - Open the AWS Management Console at https://aws.amazon.com/.
     - Sign in to your AWS account.
       
-  ##### 4.2 Create EC2 Instance
+##### 4.2 Create EC2 Instance
     - Navigate to the EC2 Dashboard.
     - Click on "Launch Instance."
     - Choose the Ubuntu OS image.
     - Select the instance type as t2.micro.
     - Follow the on-screen instructions to complete the instance creation.
   
-  ##### 4.3 Connect to the Instance
+##### 4.3 Connect to the Instance
     - Connect to the newly created instance as the root user.
       
-  ##### 4.4 Setting Up the Instance to run streamlit app
+##### 4.4 Setting Up the Instance to run streamlit app
       4.4.1 Update Ubuntu Instance. Execute the following command to update the Ubuntu instance:
       
         ```bash
@@ -215,34 +210,34 @@ It is highly recommended to use **GIT Bash** for Windows. For Linux/Mac, use the
     
     
 ### 5 Configure HTTPS with Apache2
-  ##### 5.1 Run the configure.sh bash file with the following command:
+##### 5.1 Run the configure.sh bash file with the following command:
   
   ```bash
   ~/var/www/html/attendance-system-app $ bash configure.sh
   This command will create a file deploy_attendance_app.conf in the /etc/apache2/sites-available/ directory.
   ```
   
-  ##### 5.2 Open the deploy_attendance_app.conf file in /etc/apache2/sites-available/ directory using vim:
+##### 5.2 Open the deploy_attendance_app.conf file in /etc/apache2/sites-available/ directory using vim:
   
   ```bash
   ~$ vi /etc/apache2/sites-available/deploy_attendance_app.conf
   ```
   
-  ##### 5.3 Modify the deploy_attendance_app.conf as per the provided screenshot.
+##### 5.3 Modify the deploy_attendance_app.conf as per the provided screenshot.
   
-  ##### 5.4 Enable the site within the Apache2 configuration:
+##### 5.4 Enable the site within the Apache2 configuration:
   
   ```bash
   ~$ sudo a2ensite /etc/apache2/sites-available/deploy_attendance_app.conf
   ```
   
-  ##### 5.5 Restart Apache2 server:
+##### 5.5 Restart Apache2 server:
   
   ```bash
   ~$ sudo service apache2 restart
   ```
   
-  ##### 5.6 Configure Inbound Rules in Security Group, Make sure to add the following inbound rules:
+##### 5.6 Configure Inbound Rules in Security Group, Make sure to add the following inbound rules:
   
   | Type | Protocol | Port | Range | Source | CIDR blocks|
   | :---: | :---: | :---: | :---: | :---: | :---: |
