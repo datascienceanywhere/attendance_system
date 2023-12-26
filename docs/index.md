@@ -198,8 +198,18 @@ Make sure you add below inbound rules
 Modify the `deploy_attendance_app.conf` as per below screenshot.
 ![Screenshot 2023-12-26 180229](https://github.com/datascienceanywhere/attendance_system/assets/75901421/5f1f2a7b-a3fd-4ee8-a3d3-79a67cb5bfc4)
 
-### 3.4 Configuring Inbound Rules in security group
+3. Enable site within the apache2 configuration
+   ```bash
+   ~$ sudo a2ensite /etc/apache2/sites-available/deploy_attendance_app.conf
+   ```
+4. Restart apache2 server
+   ```bash
+   ~$ sudo service apache2 restart
+   ```
+
+5. Configuring Inbound Rules in security group
 Make sure you add below inbound rules 
+
 |Type|Protocol|Port range|Source|CIDR blocks|
 |:--:|:--:|:--:|:--:|:--:|
 |SSH|TCP|22|Custom|0.0.0.0/0|
@@ -207,9 +217,3 @@ Make sure you add below inbound rules
 |HTTP|TCP|80|Custom|0.0.0.0/0|
 
 
-
-
-
-### 
-
-Now, your EC2 instance is set up with Apache2 installed and the default web page removed. You can proceed to deploy your Real-Time Attendance System on this instance. Customize the Apache2 configuration and upload your application files to the `/var/www/html` directory for hosting on the web server.
