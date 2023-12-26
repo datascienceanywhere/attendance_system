@@ -55,9 +55,9 @@ It is highly recommended to use **GIT Bash** for Windows. For Linux/Mac, use the
 
 ### 2. Add necessary code into the app for streamlit-webrtc to run in cloud 
 
-##### 2.1 Remove all unnecessary files not part of the application.
+##### 2.1. Remove all unnecessary files not part of the application.
 
-##### 2.2 Modify the code of streamlit-webrtc as per the official documentation.
+##### 2.2. Modify the code of streamlit-webrtc as per the official documentation.
 
 - HTTPS is required to access local media devices.
   - Create a bash file named "configure.sh" and copy and paste the following code:
@@ -107,7 +107,7 @@ It is highly recommended to use **GIT Bash** for Windows. For Linux/Mac, use the
   - Apply inbound rules for cloud deployment as TYPE -> Custom UDP and PORT range -> 49152 - 65535.
   - Reference: [Streamlit-webrtc Documentation](https://github.com/whitphx/streamlit-webrtc?tab=readme-ov-file#serving-from-remote-host)
 
-##### 2.3 Create a bash file with the name main.sh and copy and paste the following bash commands:
+##### 2.3. Create a bash file with the name main.sh and copy and paste the following bash commands:
 ```bash
   bash configure.sh
   streamlit run Home.py
@@ -128,67 +128,67 @@ It is highly recommended to use **GIT Bash** for Windows. For Linux/Mac, use the
 ```
 ### 4. Clone app in AWS EC2 Instance
 
-##### 4.1 Log in to AWS Account
+##### 4.1. Log in to AWS Account
   - Open the AWS Management Console at https://aws.amazon.com/.
   - Sign in to your AWS account.
       
-##### 4.2 Create EC2 Instance
+##### 4.2. Create EC2 Instance
 - Navigate to the EC2 Dashboard.
 - Click on "Launch Instance."
 - Choose the Ubuntu OS image.
 - Select the instance type as t2.micro.
 - Follow the on-screen instructions to complete the instance creation.
   
-##### 4.3 Connect to the Instance
+##### 4.3. Connect to the Instance
 - Connect to the newly created instance as the root user.
       
-##### 4.4 Setting Up the Instance to run streamlit app
-4.4.1 Update Ubuntu Instance. Execute the following command to update the Ubuntu instance:
+##### 4.4. Setting Up the Instance to run streamlit app
+a) Update Ubuntu Instance. Execute the following command to update the Ubuntu instance:
 
 ```bash
 $ sudo apt-get update
 ```
 
-4.4.2 Install and Configure Apache2. Follow the steps outlined in the official Ubuntu tutorial to install and configure Apache2.
+b) Install and Configure Apache2. Follow the steps outlined in the official Ubuntu tutorial to install and configure Apache2.
 
 ```bash
 $ sudo apt install apache2
 ```
 
-4.4.3 Navigate to Default Root Directory. Change to the default root directory of Apache2:
+c) Navigate to Default Root Directory. Change to the default root directory of Apache2:
 
 ```bash
 $ cd /var/www/html
 ```
 
-4.4.4 Delete Default `index.html` File. Remove the default index.html file from the directory:
+d) Delete Default `index.html` File. Remove the default index.html file from the directory:
 
 ```bash
 ~/var/www/html $ rm index.html
 ```
 
-4.4.5 Clone Streamlit App Using Git
+e) Clone Streamlit App Using Git
 ```bash
 ~/var/www/html $ git clone <your github repository>
 ```
 
-4.4.6 Change Directory to Project Folder
+f) Change Directory to Project Folder
 ```bash
 ~/var/www/html $ cd attendance-system-app
 ```
 
-4.4.7 Install All Required Packages in requirements.txt
+g) Install All Required Packages in requirements.txt
 ```bash
 ~/var/www/html/attendance-system-app $ pip3 install -r requirements.txt
 ```
 
-4.4.8 Run the Streamlit App
+h) Run the Streamlit App
 
 ```bash
 ~/var/www/html/attendance-system-app $ streamlit run Home.py
 ```
 
-4.4.9 Configure Inbound Rules in Security Group to View the Web App with IP Address
+i) Configure Inbound Rules in Security Group to View the Web App with IP Address
   - Make sure to add the following inbound rules:
     
 | Type | Protocol | Port | Range | Source | CIDR blocks|
