@@ -1,4 +1,101 @@
 # Deploy Real-Time Attendance System on AWS EC2 Instance
+It is highly recommed to use GIT bash for Windows. For Linux/Mac use default terminal.
+## 0. Setting up Code for Deployment
+1. Create a new directory with name `attendance_system_app`.
+   ```bash
+   $ mkdir attendance_system_app
+   ```
+2. Navigate to the folder
+   ```bash
+   $ cd attendance_system_app
+   ```
+3. Lets test our application that we developed in the previous lesson working or not.
+   - Create virtual environemnt
+     ```bash
+     ~/attendance_system_app $ python -m venv  virtualenv
+     ```
+   - Activate virtual environment
+     For windows (if git bash),
+     ```bash
+     ~/attendance_system_app $ source virtualenv/Scripts/activate
+     ```
+     For windows (command prompt or powershell)
+     ```bash
+     ~/attendance_system_app $ virtualenv\Scripts\activate
+     ```
+     For Linux/Mac
+     ```bash
+     ~/attendance_system_app $ source virtualenv/bin/activate
+     ```
+   - Create another directory with name `app`
+     ```bash
+     (virtualenv) ~/attendance_system_app $ mkdir app
+     ```
+      - Then copy and paste complete application code in `app` directory.
+   - Install only required packages from `requirements.txt` in app folder. Make sure you check that only necessary packages are there in requirements.txt file
+     ```bash
+     (virtualenv) ~/attendance_system_app $ cd app
+     (virtualenv) ~/attendance_system_app/app $ pip install -r requirements.txt
+     ```
+  - Run the application
+     ```bash
+     (virtualenv) ~/attendance_system_app/app $ streamlit run Home.py
+     ```
+4. Remove all unnecesary files that are not part of the application to run which lite our application.
+3. Modifiy our code of streamlit-webrtc as per official documentation.
+   - HTTPS is required to access local media devices.
+      > Create bash file with name "configure.sh" and copy and paste below code
+      > ```bash
+      >  echo "
+      >      <VirtualHost *:80>
+      >          ServerName <domain or ip address>
+      >          Redirect / https://<domain or ip address>
+      >      </VirtualHost> 
+      >      
+      >      <VirtualHost  *:443>
+      >      
+      >          ServerName <domain or ip address>
+      >          SSLEngine on
+      >          SSLProxyEngine On
+      >          SSLCertificateFile      /etc/ssl/certs/ssl-cert-snakeoil.pem
+      >          SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+      >      
+      >          ProxyRequests     Off
+      >          ProxyPreserveHost On
+      >          #AllowEncodedSlashes NoDecode
+      >          <Proxy *>
+      >              Order deny,allow
+      >              Allow from all
+      >          </Proxy>
+      >      
+      >          ProxyPass         /_stcore        ws://localhost:8501/_stcore
+      >          ProxyPassReverse  /_stcore        ws://localhost:8501/_stcore
+      >      
+      >          # The order is important here
+      >          ProxyPass         /        http://localhost:8501/
+      >          ProxyPassReverse  /        http://localhost:8501/
+      >      
+      >      </VirtualHost>" > /etc/apache2/sites-available/deploy_attendance_app.conf
+      > ```
+   
+   - STUN/TURN servers are required to establish the media stream connection.
+      > Configure the STUN server
+      > To deploy the app to the cloud, we have to configure the STUN server via the rtc_configuration argument on webrtc_streamer() like below.
+      > ```bash
+      > webrtc_streamer(
+      >     # ...
+      >     rtc_configuration={  # Add this config
+      >        "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
+      >     }
+      >     # ...
+      > )
+      > ```
+      > This configuration is necessary to establish the media streaming connection when the server is on a remote host.
+      > In cloud we need to apply inbound rules as `TYPE -> Custom UDP`  and `PORT range -> 49152 - 65535`
+      > Reference: <https://github.com/whitphx/streamlit-webrtc?tab=readme-ov-file#serving-from-remote-host>
+     
+6. Please note that max size of file that allowed is 50MB 
+
 
 ## 1. Create EC2 Instance
 
