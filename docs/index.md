@@ -37,7 +37,7 @@ It is highly recommended to use **GIT Bash** for Windows. For Linux/Mac, use the
       
 ##### 1.5. Create another directory named `app`
   ```bash
-    (virtualenv) ~/attendance_system_app $ mkdir app
+  (virtualenv) ~/attendance_system_app $ mkdir app
   ```
 
 ##### 1.6. Copy and paste the complete application code into the app directory.
