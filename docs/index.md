@@ -50,7 +50,7 @@ It is highly recommended to use **GIT Bash** for Windows. For Linux/Mac, use the
   
 ##### 1.8. Run the application
   ```bash
-    (virtualenv) ~/attendance_system_app/app $ streamlit run Home.py
+  (virtualenv) ~/attendance_system_app/app $ streamlit run Home.py
   ```
 
 ### 2. Add necessary code into the app for streamlit-webrtc to run in cloud 
@@ -62,55 +62,55 @@ It is highly recommended to use **GIT Bash** for Windows. For Linux/Mac, use the
 - HTTPS is required to access local media devices.
   - Create a bash file named "configure.sh" and copy and paste the following code:
     ```bash
-      echo "
-          <VirtualHost *:80>
-              ServerName <domain or ip address>
-              Redirect / https://<domain or ip address>
-          </VirtualHost> 
-          
-          <VirtualHost  *:443>
-          
-              ServerName <domain or ip address>
-              SSLEngine on
-              SSLProxyEngine On
-              SSLCertificateFile      /etc/ssl/certs/ssl-cert-snakeoil.pem
-              SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
-          
-              ProxyRequests     Off
-              ProxyPreserveHost On
-              #AllowEncodedSlashes NoDecode
-              <Proxy *>
-                  Order deny,allow
-                  Allow from all
-              </Proxy>
-          
-              ProxyPass         /_stcore        ws://localhost:8501/_stcore
-              ProxyPassReverse  /_stcore        ws://localhost:8501/_stcore
-          
-              # The order is important here
-              ProxyPass         /        http://localhost:8501/
-              ProxyPassReverse  /        http://localhost:8501/
-          
-          </VirtualHost>" > /etc/apache2/sites-available/deploy_attendance_app.conf
+  echo "
+      <VirtualHost *:80>
+          ServerName <domain or ip address>
+          Redirect / https://<domain or ip address>
+      </VirtualHost> 
+      
+      <VirtualHost  *:443>
+      
+          ServerName <domain or ip address>
+          SSLEngine on
+          SSLProxyEngine On
+          SSLCertificateFile      /etc/ssl/certs/ssl-cert-snakeoil.pem
+          SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+      
+          ProxyRequests     Off
+          ProxyPreserveHost On
+          #AllowEncodedSlashes NoDecode
+          <Proxy *>
+              Order deny,allow
+              Allow from all
+          </Proxy>
+      
+          ProxyPass         /_stcore        ws://localhost:8501/_stcore
+          ProxyPassReverse  /_stcore        ws://localhost:8501/_stcore
+      
+          # The order is important here
+          ProxyPass         /        http://localhost:8501/
+          ProxyPassReverse  /        http://localhost:8501/
+      
+      </VirtualHost>" > /etc/apache2/sites-available/deploy_attendance_app.conf
       ```
     
   - STUN/TURN servers are required to establish the media stream connection. Configure the STUN server. To deploy the app to the cloud, configure the STUN server via the rtc_configuration argument on webrtc_streamer() as follows:
     ```python
-      webrtc_streamer(
-          # ...
-          rtc_configuration={
-              "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
-          }
-          # ...
-      )
+    webrtc_streamer(
+        # ...
+        rtc_configuration={
+            "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
+        }
+        # ...
+    )
     ```
   - Apply inbound rules for cloud deployment as TYPE -> Custom UDP and PORT range -> 49152 - 65535.
   - Reference: [Streamlit-webrtc Documentation](https://github.com/whitphx/streamlit-webrtc?tab=readme-ov-file#serving-from-remote-host)
 
 ##### 2.3. Create a bash file with the name main.sh and copy and paste the following bash commands:
 ```bash
-  bash configure.sh
-  streamlit run Home.py
+bash configure.sh
+streamlit run Home.py
 ```
 
 ### 3. Push Complete Update Code to GitHub Repository
@@ -119,12 +119,12 @@ It is highly recommended to use **GIT Bash** for Windows. For Linux/Mac, use the
 
 ##### 3.2. In your local computer, use the following git commands:
 ```bash
-  git init
-  git add .
-  git commit -m "attendance system"
-  git remote
-  git branch -M
-  git push -u origin main
+$ git init
+$ git add .
+$ git commit -m "attendance system"
+$ git remote
+$ git branch -M
+$ git push -u origin main
 ```
 ### 4. Clone app in AWS EC2 Instance
 
