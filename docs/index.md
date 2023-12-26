@@ -185,7 +185,18 @@ Make sure you add below inbound rules
 
 
 ## Configure HTTPS with Apache2
-1. 
+1. Run the configure.sh bash file with below command
+   ```bash
+   ~/var/www/html/attendance-system-app $ bash configure.sh
+   ```
+   the above command with create a file `deploy_attendance_app.conf` in `/etc/apache2/sites-available/` directory
+
+2. Open the  `deploy_attendance_app.conf` in `/etc/apache2/sites-available/` directory in vim
+   ```bash
+   ~$ vi /etc/apache2/sites-available/deploy_attendance_app.conf
+   ```
+Modify the `deploy_attendance_app.conf` as per below screenshot.
+![Screenshot 2023-12-26 180229](https://github.com/datascienceanywhere/attendance_system/assets/75901421/5f1f2a7b-a3fd-4ee8-a3d3-79a67cb5bfc4)
 
 ### 3.4 Configuring Inbound Rules in security group
 Make sure you add below inbound rules 
