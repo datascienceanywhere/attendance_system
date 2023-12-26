@@ -3,34 +3,42 @@ It is highly recommended to use **GIT Bash** for Windows. For Linux/Mac, use the
 
 ### 1. Setting up Code for Deployment
   ##### 1.1. Create a new directory with the name attendance_system_app.
-    ```bash
-    $ mkdir attendance_system_app
-    ```
+  
+  ```bash
+  $ mkdir attendance_system_app
+  ```
   
   ##### 1.2. Navigate to the folder
-    ```bash
-    $ cd attendance_system_app
-    ```
+  
+  ```bash
+  $ cd attendance_system_app
+  ```
   
   ##### 1.3. Lets test the application developed in the previous lesson. First Create a virtual environment.
+  
     ```bash
     ~/attendance_system_app $ python -m venv virtualenv
     ```
   
   ##### 1.4. Activate the virtual environment
+  
     - For Windows (Git Bash),
+    
       ```bash
       ~/attendance_system_app $ source virtualenv/Scripts/activate
       ```
     - For Windows (Command Prompt or PowerShell),
+    
       ```bash
       ~/attendance_system_app $ virtualenv\Scripts\activate
       ```
     - For Linux/Mac
+    
       ```bash
       ~/attendance_system_app $ source virtualenv/bin/activate
       ```
   ##### 1.5. Create another directory named `app`
+  
     ```bash
     (virtualenv) ~/attendance_system_app $ mkdir app
     ```
@@ -59,6 +67,7 @@ It is highly recommended to use **GIT Bash** for Windows. For Linux/Mac, use the
     - HTTPS is required to access local media devices.
   
     - Create a bash file named "configure.sh" and copy and paste the following code:
+    
       ```bash
       echo "
           <VirtualHost *:80>
@@ -91,6 +100,7 @@ It is highly recommended to use **GIT Bash** for Windows. For Linux/Mac, use the
           
           </VirtualHost>" > /etc/apache2/sites-available/deploy_attendance_app.conf
       ```
+      
     - STUN/TURN servers are required to establish the media stream connection.
       Configure the STUN server. To deploy the app to the cloud, configure the STUN server via the rtc_configuration argument on webrtc_streamer() as follows:
       
@@ -103,6 +113,7 @@ It is highly recommended to use **GIT Bash** for Windows. For Linux/Mac, use the
           # ...
       )
       ```
+      
     - Apply inbound rules for cloud deployment as TYPE -> Custom UDP and PORT range -> 49152 - 65535.
 
     - Reference: [Streamlit-webrtc Documentation](https://github.com/whitphx/streamlit-webrtc?tab=readme-ov-file#serving-from-remote-host)
