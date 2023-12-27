@@ -119,11 +119,12 @@ streamlit run Home.py
 
 ##### 3.2. In your local computer, use the following git commands:
 ```bash
+$ echo "# attendance-system-app" >> README.md
 $ git init
-$ git add .
-$ git commit -m "attendance system"
-$ git remote
-$ git branch -M
+$ git add README.md
+$ git commit -m "first commit"
+$ git branch -M main
+$ git remote add origin https://github.com/datascienceanywhere/attendance-system-app.git
 $ git push -u origin main
 ```
 ### 4. Clone app in AWS EC2 Instance
