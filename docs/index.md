@@ -1,4 +1,4 @@
-![Screenshot 2023-12-26 180229](https://github.com/datascienceanywhere/attendance_system/assets/75901421/42153374-8786-4059-80e3-3ecb1676c27d)## Deploy Real-Time Attendance System on AWS EC2 Instance
+## Deploy Real-Time Attendance System on AWS EC2 Instance
 It is highly recommended to use **GIT Bash** for Windows. For Linux/Mac, use the default terminal.
 
 ### 1. Setting up Code for Deployment
@@ -213,7 +213,7 @@ This command will create a file deploy_attendance_app.conf in the /etc/apache2/s
 ```
   
 ##### 5.3 Modify the deploy_attendance_app.conf as per the provided screenshot.
-![Screenshot 2023-12-26 180229](https://github.com/datascienceanywhere/attendance_system/assets/75901421/2fa93cf2-16ae-482d-ba83-6c85c51652b8)
+![Screenshot 2023-12-26 180229](https://github.com/datascienceanywhere/attendance_system/assets/75901421/07eab6a2-2658-4a1e-b2d2-b798996ef1af)
 
 ##### 5.4 Enable the site within the Apache2 configuration:
 
