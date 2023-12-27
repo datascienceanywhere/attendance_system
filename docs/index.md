@@ -271,3 +271,48 @@ By default, PM2 may stop running the app if the instance is restarted. To preven
 $ pm2 startup "Attendance App"
 ```
 
+## 7. Configure your own STUN server
+
+- Install `coturn`
+```bash
+$ sudo apt-get -y update
+$ sudo apt-get install coturn
+$ systemctl stop coturn
+```
+- In coturn configure file (/etc/default/coturn) update following
+```bash
+vi /etc/default/coturn
+```
+
+```config
+TURNSERVER_ENABLED=1
+```
+
+- In turnserver configure file (/etc/turnserver.conf) update following
+
+```config
+listening-port=3478
+tls-listening-port=5349
+```
+- Start coturn
+```bash
+$ systemctl start coturn
+$ systemctl status coturn
+```
+-  New stun server urls
+```bash
+stun:<IP OR DOMAIN>:5349
+turn:<IP OR DOMAIN>:5349
+```
+- Update inbound rules in security group
+
+| Type | Protocol | Port Range | Source | CIDR blocks|
+| :---: | :---: | :---: | :---: | :---: |
+| Custom UDP | UDP | 5349 | Custom | 0.0.0.0/0 |
+| Custom UDP | UDP | 49152 - 65535 | Custom | 0.0.0.0/0 |
+
+
+
+
+
+
