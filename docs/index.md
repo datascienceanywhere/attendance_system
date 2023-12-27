@@ -216,9 +216,21 @@ This command will create a file deploy_attendance_app.conf in the /etc/apache2/s
 ![Screenshot 2023-12-26 180229](https://github.com/datascienceanywhere/attendance_system/assets/75901421/07eab6a2-2658-4a1e-b2d2-b798996ef1af)
 
 ##### 5.4 Enable the site within the Apache2 configuration:
-
+- Enable ssl
+```bash
+~$ sudo a2enmod ssl
+``` 
+- Enable reverse proxy
+```bash
+~$ sudo a2enmod proxy proxy_http proxy_balancer lbmethod_byrequests
+```
+- Now enable site (our streamlit app server)
 ```bash
 ~$ sudo a2ensite /etc/apache2/sites-available/deploy_attendance_app.conf
+```
+- Restart apache2
+```bash
+~$ sudo systemctl restart apache2
 ```
   
 ##### 5.5 Restart Apache2 server:
